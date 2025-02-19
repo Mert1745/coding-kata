@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.haiilo</groupId>
-	<artifactId>kata</artifactId>
+	<artifactId>kata-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>coding-kata</name>
 	<description>Coding Kata Assignment</description>
