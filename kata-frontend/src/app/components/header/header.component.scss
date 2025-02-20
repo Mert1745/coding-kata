@@ -1,0 +1,17 @@
+.main-component {
+  background: #4c9756;
+  height: 75px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  img {
+    padding-left: 20px;
+  }
+
+  p {
+    color: white;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+}
