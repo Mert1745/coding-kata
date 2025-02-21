@@ -1,16 +1,16 @@
 .main-wrapper {
   display: flex;
-  margin-left: 25%;
-  margin-right: 25%;
   margin-top: 50px;
   justify-content: center;
+  background: aliceblue;
+  box-shadow: 3px 4px 4px lightgrey;
 }
 
 .product {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1%;
+  padding: 20px;
 }
 
 .product-wrapper {
@@ -22,6 +22,8 @@
   padding: 1%;
   align-items: center;
   justify-content: flex-start;
+  background: beige;
+  box-shadow: 3px 4px 4px lightgrey;
 
   img {
     width: 160px;

@@ -1,0 +1,6 @@
+<div class="cart-wrapper border border-1 border-info rounded-4 display-6 fs-5">
+    <h3 class="d-flex justify-content-center">Cart</h3>
+    @for (cart of carts; track carts) {
+        <li *ngIf="cart.quantity > 0">{{ cart.product.name }}: {{ cart.quantity }}</li>
+    }
+</div>

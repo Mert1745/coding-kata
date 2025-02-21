@@ -1,21 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../service/product.service";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductDTO} from "../../shared/interface";
-import {toArray} from "rxjs";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
-export class ProductComponent implements OnInit {
-  products: ProductDTO[] | undefined;
+export class ProductComponent {
+  @Input() products: ProductDTO[] | undefined;
+  @Output() count = new EventEmitter<ProductDTO>();
 
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe((result) => {
-      this.products = result;
-    });
-  }
+    addNewItem(value: ProductDTO) {
+        this.count.emit(value);
+    }
 }

@@ -1,10 +1,28 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {ProductService} from "./service/product.service";
+import {Cart, ProductDTO} from "./shared/interface";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
-export class AppComponent  {
-  title = 'kata-frontend';
+export class AppComponent implements OnInit {
+    title = 'kata-frontend';
+    products: ProductDTO[] = [];
+    carts: Cart[] = [];
+
+    constructor(private productService: ProductService) {
+    }
+
+    incrementCount(product: ProductDTO) {
+        this.carts?.filter(cart => cart.product.id === product.id).forEach(cart => cart.quantity++);
+    }
+
+    ngOnInit(): void {
+        this.productService.getProducts().subscribe((result) => {
+            this.products = result;
+            this.products.forEach(product => this.carts?.push({quantity: 0, product: product}))
+        });
+    }
 }

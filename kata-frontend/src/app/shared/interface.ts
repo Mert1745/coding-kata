@@ -10,3 +10,8 @@ export interface PriceDTO {
   quantity: number;
   amount: number;
 }
+
+export interface Cart {
+    quantity: number;
+    product: ProductDTO;
+}

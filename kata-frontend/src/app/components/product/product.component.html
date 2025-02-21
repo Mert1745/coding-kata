@@ -1,14 +1,14 @@
-<div class="main-wrapper border border-3 border-info rounded-4 display-6 fs-5" >
+<div class="main-wrapper border border-1 border-info rounded-4 display-6 fs-5" >
     @for (product of products; track product.id) {
         <div class="product">
             <div class="product-wrapper border border-warning rounded-4">
                 <img [src]="'/assets/images/' + product.id + '.png'" alt="food"/>
-                <p>{{ product.name }}</p>
+                <p class="fw-bold">{{ product.name }}</p>
                 @for (price of product.prices; track price.id) {
                     <p>{{ price.quantity }} for {{ price.amount }} €</p>
                 }
             </div>
-            <button type="button" class="btn btn-success mt-2">Add</button>
+            <button type="button" class="btn btn-success mt-2" (click)="addNewItem(product)">Add</button>
         </div>
     }
 </div>
