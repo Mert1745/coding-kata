@@ -1,20 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import {ProductService} from "./service/product.service";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'kata-frontend';
-  data: any;
-
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe((result) => {
-      this.data = result;
-    });
-  }
 }
