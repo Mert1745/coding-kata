@@ -2,6 +2,7 @@
     @for (product of products; track product.id) {
         <div class="product">
             <div class="product-wrapper border border-warning rounded-4">
+                <img [src]="'/assets/images/' + product.id + '.png'" alt="food"/>
                 <p>{{ product.name }}</p>
                 @for (price of product.prices; track price.id) {
                     <p>{{ price.quantity }} for {{ price.amount }} €</p>
