@@ -8,11 +8,11 @@ import java.util.List;
 
 public class CalculationUtil {
 
+    // recalculating the total value to check if there is any injection
     public static BigDecimal calculateSum(List<Sum> databaseCarts) {
         return databaseCarts.stream().map(CalculationUtil::calculateProductPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    // recalculating the total value to check if there is any injection
     public static BigDecimal calculateProductPrice(Sum product) {
         // Higher quantity prices should be calculated first as they have special offers.
         List<PriceDTO> prices = product.prices();

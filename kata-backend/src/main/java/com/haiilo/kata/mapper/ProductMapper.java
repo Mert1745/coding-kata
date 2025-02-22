@@ -13,7 +13,7 @@ public class ProductMapper {
     public static List<ProductDTO> mapProductDTOFrom(List<Product> productList) {
         List<ProductDTO> productDTOList = new ArrayList<>();
         productList.forEach(product -> {
-            List<PriceDTO> priceDTOS = ProductMapper.mapPriceDTOFrom(product.getPrices());
+            List<PriceDTO> priceDTOS = mapPriceDTOFrom(product.getPrices());
             productDTOList.add(new ProductDTO(product.getId(), product.getName(), priceDTOS));
         });
         return productDTOList;

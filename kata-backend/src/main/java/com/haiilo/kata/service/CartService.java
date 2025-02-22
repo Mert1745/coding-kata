@@ -1,7 +1,9 @@
 package com.haiilo.kata.service;
 
 import com.haiilo.kata.CalculationUtil;
+import com.haiilo.kata.constant.ErrorMessage;
 import com.haiilo.kata.domain.*;
+import com.haiilo.kata.exception.ProductNotFoundException;
 import com.haiilo.kata.mapper.ProductMapper;
 import com.haiilo.kata.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -31,11 +33,11 @@ public class CartService {
     }
 
     private void getDatabaseCarts(CartDTO cart, Optional<Product> productOptional, List<Sum> databaseCarts) {
-        productOptional.ifPresent(product -> {
-            List<ProductDTO> productDTOs = ProductMapper.mapProductDTOFrom(List.of(product));
-            List<PriceDTO> prices = productDTOs.get(0).prices();
-            databaseCarts.add(new Sum(cart.quantity(), prices));
-        });
+        Product product = productOptional.orElseThrow(() -> new ProductNotFoundException(ErrorMessage.PRODUCT_NOT_FOUND));
+
+        List<ProductDTO> productDTOs = ProductMapper.mapProductDTOFrom(List.of(product));
+        List<PriceDTO> prices = productDTOs.get(0).prices();
+        databaseCarts.add(new Sum(cart.quantity(), prices));
     }
 
     private Boolean isTransactionValid(Checkout checkout, List<Sum> databaseCarts) {
