@@ -1,4 +1,4 @@
-package com.haiilo.kata;
+package com.haiilo.kata.util;
 
 import com.haiilo.kata.domain.PriceDTO;
 import com.haiilo.kata.domain.Sum;

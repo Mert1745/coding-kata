@@ -1,10 +1,9 @@
 package com.haiilo.kata.service;
 
-import com.haiilo.kata.CalculationUtil;
+import com.haiilo.kata.util.CalculationUtil;
 import com.haiilo.kata.domain.*;
 import com.haiilo.kata.exception.ProductNotFoundException;
 import com.haiilo.kata.repository.ProductRepository;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

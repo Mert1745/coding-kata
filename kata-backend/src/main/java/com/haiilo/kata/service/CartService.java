@@ -1,6 +1,6 @@
 package com.haiilo.kata.service;
 
-import com.haiilo.kata.CalculationUtil;
+import com.haiilo.kata.util.CalculationUtil;
 import com.haiilo.kata.constant.ErrorMessage;
 import com.haiilo.kata.domain.*;
 import com.haiilo.kata.exception.ProductNotFoundException;
