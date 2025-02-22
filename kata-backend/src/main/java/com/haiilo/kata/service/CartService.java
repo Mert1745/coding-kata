@@ -24,13 +24,21 @@ public class CartService {
         List<Sum> databaseCarts = new ArrayList<>();
         carts.forEach(cart -> {
             Optional<Product> productOptional = productRepository.findById(cart.product().id().intValue());
-            productOptional.ifPresent(product -> {
-                List<ProductDTO> productDTOs = ProductMapper.mapProductDTOFrom(List.of(product));
-                List<PriceDTO> prices = productDTOs.get(0).prices();
-                databaseCarts.add(new Sum(cart.quantity(), prices));
-            });
+            getDatabaseCarts(cart, productOptional, databaseCarts);
         });
 
+        return isTransactionValid(checkout, databaseCarts);
+    }
+
+    private void getDatabaseCarts(CartDTO cart, Optional<Product> productOptional, List<Sum> databaseCarts) {
+        productOptional.ifPresent(product -> {
+            List<ProductDTO> productDTOs = ProductMapper.mapProductDTOFrom(List.of(product));
+            List<PriceDTO> prices = productDTOs.get(0).prices();
+            databaseCarts.add(new Sum(cart.quantity(), prices));
+        });
+    }
+
+    private Boolean isTransactionValid(Checkout checkout, List<Sum> databaseCarts) {
         BigDecimal calculate = CalculationUtil.calculateSum(databaseCarts);
         if (calculate.compareTo(checkout.price()) == 0) {
             return Boolean.TRUE;
