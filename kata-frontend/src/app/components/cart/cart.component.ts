@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, Input} from '@angular/core';
-import {Cart} from "../../shared/interface";
+import {CartDTO} from "../../shared/interface";
+import {CartService} from "../../service/cart.service";
 
 @Component({
     selector: 'app-cart',
@@ -7,13 +8,13 @@ import {Cart} from "../../shared/interface";
     styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-    @Input() carts: Cart[];
+    @Input() carts: CartDTO[];
     productSum: { productId: number, amount: number }[] = [];
 
-    constructor(private cdr: ChangeDetectorRef) {
+    constructor(private cdr: ChangeDetectorRef, private cartService: CartService) {
     }
 
-    calculateProductPrice(cart: Cart): number {
+    calculateProductPrice(cart: CartDTO): number {
         //Higher quantity will have to be calculated first as they have special offer.
         const prices = cart.product.prices.sort((one, two) => (one.quantity > two.quantity ? -1 : 1));
         let quantity = cart.quantity;
@@ -29,7 +30,7 @@ export class CartComponent {
         return sum;
     }
 
-    private calculateProductSum(cart: Cart, sum: number) {
+    private calculateProductSum(cart: CartDTO, sum: number) {
         const product = this.productSum.find(s => s.productId === cart.product.id);
 
         if (!product) {
@@ -41,20 +42,17 @@ export class CartComponent {
         setTimeout(() => this.cdr.detectChanges(), 0);
     }
 
-    increaseProductQuantity(cart: Cart) {
-        cart.quantity = cart.quantity + 1;
-    }
-
-    decreaseProductQuantity(cart: Cart) {
-        cart.quantity = cart.quantity - 1;
-    }
-
-
     getTotalSum(): number {
         return this.productSum.reduce((total, product) => total + product.amount, 0);
     }
 
-    proceedCheckout() {
-        console.log("checkout proceed ", this.productSum.length);
+    proceedCheckout(carts: CartDTO[]) {
+        const productsInCarts = carts.filter(cart => cart.quantity > 0);
+        this.cartService.checkout({price: this.getTotalSum(), carts: productsInCarts}).subscribe((result) => {
+            if (result) {
+                this.carts.forEach(cart => { cart.quantity = 0 })
+                this.productSum = [];
+            }
+        })
     }
 }

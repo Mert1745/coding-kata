@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ProductService} from "./service/product.service";
-import {Cart, ProductDTO} from "./shared/interface";
+import {CartDTO, ProductDTO} from "./shared/interface";
 
 @Component({
     selector: 'app-root',
@@ -10,7 +10,7 @@ import {Cart, ProductDTO} from "./shared/interface";
 export class AppComponent implements OnInit {
     title = 'kata-frontend';
     products: ProductDTO[] = [];
-    carts: Cart[] = [];
+    carts: CartDTO[] = [];
 
     constructor(private productService: ProductService) {
     }

@@ -11,7 +11,12 @@ export interface PriceDTO {
   amount: number;
 }
 
-export interface Cart {
+export interface Checkout {
+    price: number,
+    carts: CartDTO[];
+}
+
+export interface CartDTO {
     quantity: number;
     product: ProductDTO;
 }

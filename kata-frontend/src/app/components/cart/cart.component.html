@@ -4,9 +4,9 @@
         <li class="added-product" *ngIf="cart.quantity > 0">
             {{ cart.product.name }}
             <div class="quantity">
-                <p class="add-subtract" (click)="decreaseProductQuantity(cart)">-&nbsp;</p>
+                <p class="add-subtract" (click)="cart.quantity = cart.quantity - 1">-&nbsp;</p>
                 <p>{{ cart.quantity }}</p>
-                <p class="add-subtract" (click)="increaseProductQuantity(cart)">&nbsp;+</p>
+                <p class="add-subtract" (click)="cart.quantity = cart.quantity + 1">&nbsp;+</p>
             </div>
             <p class="price">{{ calculateProductPrice(cart) }} €</p>
         </li>
@@ -14,7 +14,7 @@
     <div class="proceed-wrapper">
         <li class="added-product">Total: {{ getTotalSum() }} €</li>
         <button type="button" class="btn btn-warning mt-2 justify-content-center" [disabled]="this.productSum.length === 0"
-                (click)="proceedCheckout()">Proceed Checkout
+                (click)="proceedCheckout(carts)">Proceed Checkout
         </button>
     </div>
 </div>
