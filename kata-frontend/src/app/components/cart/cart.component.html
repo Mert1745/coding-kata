@@ -1,6 +1,20 @@
-<div class="cart-wrapper border border-1 border-info rounded-4 display-6 fs-5">
+<div id="cart-wrapper" class="cart-wrapper border border-1 border-info rounded-4 display-6 fs-5">
     <h3 class="d-flex justify-content-center">Cart</h3>
     @for (cart of carts; track carts) {
-        <li *ngIf="cart.quantity > 0">{{ cart.product.name }}: {{ cart.quantity }}</li>
+        <li class="added-product" *ngIf="cart.quantity > 0">
+            {{ cart.product.name }}
+            <div class="quantity">
+                <p class="add-subtract" (click)="decreaseProductQuantity(cart)">-&nbsp;</p>
+                <p>{{ cart.quantity }}</p>
+                <p class="add-subtract" (click)="increaseProductQuantity(cart)">&nbsp;+</p>
+            </div>
+            <p class="price">{{ calculateProductPrice(cart) }} €</p>
+        </li>
     }
+    <div class="proceed-wrapper">
+        <li class="added-product">Total: {{ getTotalSum() }} €</li>
+        <button type="button" class="btn btn-warning mt-2 justify-content-center" [disabled]="this.productSum.length === 0"
+                (click)="proceedCheckout()">Proceed Checkout
+        </button>
+    </div>
 </div>
