@@ -21,6 +21,15 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Price> prices = new ArrayList<>();
 
+    public Product() {
+    }
+
+    public Product(Long id, String name, List<Price> prices) {
+        this.id = id;
+        this.name = name;
+        this.prices = prices;
+    }
+
     public Long getId() {
         return id;
     }

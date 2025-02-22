@@ -21,6 +21,16 @@ public class Price {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    public Price() {
+    }
+
+    public Price(Long id, BigDecimal amount, Integer quantity, Product product) {
+        this.id = id;
+        this.amount = amount;
+        this.quantity = quantity;
+        this.product = product;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
