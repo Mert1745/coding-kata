@@ -1,7 +1,10 @@
 <div>
     <app-header></app-header>
-    <div class="d-flex flex-row justify-content-center">
+    <div *ngIf="productState === ProductState.SUCCESS" class="d-flex flex-row justify-content-center">
         <app-product [products]="products" (count)="incrementCount($event)"></app-product>
         <app-cart [carts]="carts"></app-cart>
+    </div>
+    <div class="mt-5 d-flex justify-content-center" *ngIf="productState === ProductState.FAILED">
+        Hımmm....Something went wrong!
     </div>
 </div>

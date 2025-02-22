@@ -12,7 +12,9 @@
         </li>
     }
     <div class="proceed-wrapper">
-        <li class="added-product">Total: {{ getTotalSum() }} €</li>
+        <li class="added-product" *ngIf="checkoutResult === CheckoutState.SUCCESS">Checkout completed!</li>
+        <li class="added-product" *ngIf="checkoutResult === CheckoutState.FAILED">Checkout failed!</li>
+        <li class="added-product" *ngIf="checkoutResult === CheckoutState.NONE">Total: {{ getTotalSum() }} €</li>
         <button type="button" class="btn btn-warning mt-2 justify-content-center" [disabled]="this.productSum.length === 0"
                 (click)="proceedCheckout(carts)">Proceed Checkout
         </button>
