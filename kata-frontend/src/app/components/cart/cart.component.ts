@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input} from '@angular/core';
+import {ChangeDetectorRef, Component, DoCheck, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {CartDTO} from "../../shared/interface";
 import {CartService} from "../../service/cart.service";
 import {catchError, of} from "rxjs";
@@ -9,17 +9,38 @@ import {CheckoutState} from "../../shared/enums";
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements DoCheck {
     @Input() carts: CartDTO[];
     productSum: { productId: number, amount: number }[] = [];
     checkoutResult: CheckoutState = CheckoutState.NONE;
 
+    protected readonly CheckoutState = CheckoutState;
+
     constructor(private cdr: ChangeDetectorRef, private cartService: CartService) {
     }
 
+    ngDoCheck() {
+        this.updateProductSums();
+    }
+
+    updateProductSums() {
+        this.productSum = this.carts
+            .filter(cart => cart.quantity > 0)
+            .map(cart => ({
+                productId: cart.product.id,
+                amount: this.calculateProductPrice(cart)
+            }));
+
+        // Reset checkoutResult if there are items in the cart
+        if (this.carts.some(cart => cart.quantity > 0)) {
+            this.checkoutResult = CheckoutState.NONE;
+        }
+
+        this.cdr.detectChanges(); // Force UI update
+    }
+
+
     calculateProductPrice(cart: CartDTO): number {
-        this.checkoutResult = CheckoutState.NONE;
-        //Objects that have higher quantity will have to be calculated first as they have special offer.
         const prices = cart.product.prices.sort((one, two) => (one.quantity > two.quantity ? -1 : 1));
         let quantity = cart.quantity;
         let sum = 0;
@@ -28,22 +49,18 @@ export class CartComponent {
             let numberPerQuantity = Math.floor(quantity / price.quantity);
             sum += (numberPerQuantity * price.amount);
             quantity -= price.quantity * numberPerQuantity;
-        })
+        });
 
-        this.calculateProductSum(cart, sum);
         return sum;
     }
 
-    private calculateProductSum(cart: CartDTO, sum: number) {
-        const product = this.productSum.find(s => s.productId === cart.product.id);
+    updateQuantity(cart: CartDTO, change: number) {
+        cart.quantity = Math.max(0, cart.quantity + change); // Prevent negative values
+        this.updateProductSums(); // Recalculate totals
+    }
 
-        if (!product) {
-            this.productSum.push({productId: cart.product.id, amount: sum});
-        } else {
-            product.amount = sum;
-        }
-        // Defer change detection to prevent infinite loop
-        setTimeout(() => this.cdr.detectChanges(), 0);
+    getProductSum(productId: number): number {
+        return this.productSum.find(p => p.productId === productId)?.amount || 0;
     }
 
     getTotalSum(): number {
@@ -68,6 +85,4 @@ export class CartComponent {
                 this.checkoutResult = result ? CheckoutState.SUCCESS : CheckoutState.FAILED;
             })
     }
-
-    protected readonly CheckoutState = CheckoutState;
 }
