@@ -1,4 +1,4 @@
-[![Introduction](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://youtu.be/kHfDTYFxHCI)
+[![Introduction](https://img.youtube.com/vi/kHfDTYFxHCI/0.jpg)](https://youtu.be/kHfDTYFxHCI)
 
 ### Tech Stack
 
