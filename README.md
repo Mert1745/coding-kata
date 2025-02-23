@@ -1,3 +1,4 @@
+### Introduction Video (YouTube)
 [![Introduction](https://img.youtube.com/vi/kHfDTYFxHCI/0.jpg)](https://youtu.be/kHfDTYFxHCI)
 
 ### Tech Stack
@@ -14,6 +15,19 @@
  - JDK 17
  - Node >= 18
 
+### How To Build and Run (Backend)
+
+- Clone the project
+- Install dependencies using Maven
+- Start Spring Boot application
+
+### How To Build and Run (Frontend)
+
+- Open CLI and go to kata-frontend directory
+- Run "npm install"
+- Then run "ng serve"
+
+
 ### Possible Improvements
 
  - A Loading spinner should be added while the user waits for response from the server
@@ -23,18 +37,6 @@
  - TypeScript type "number" is not a secure option for calculating prices. Alternatives should be searched and used
  - Docker can be used for fast deployment on both local and server
  - Documentation libraries such as Swagger can be added
-
-### How To Build and Run (Backend)
-
-  - Clone the project
-  - Install dependencies using Maven
-  - Start Spring Boot application
-
-### How To Build and Run (Frontend)
-
-  - Open CLI and go to kata-frontend directory  
-  - Run "npm install"
-  - Then run "ng serve"
 
 ### Long-Term Considerations
 
