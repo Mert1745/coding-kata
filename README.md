@@ -37,19 +37,23 @@
  - TypeScript type "number" is not a secure option for calculating prices. Alternatives should be searched and used
  - Docker can be used for fast deployment on both local and server
  - Documentation libraries such as Swagger can be added
+ - End-to-end tests should be added. Performance tests 
+ - Better UI/UX
 
 ### Long-Term Considerations
 
  - H2 database is not a solution for real life apps. PostreSQL can be used as a relational database.
- - An admin portal should exist for product management (adding/subtracting new products, changing price/offers)
+ - Database sharding might be necessary if total size is big enough
  - Caching service should be applied for fast response. The most viewed products should be cached
+ - If the web-site is being used on different countries, geo-based caching and server management should be considered.
+ - An admin portal should exist for product management (adding/subtracting new products, changing price/offers)
  - User login
  - Pagination should be implemented
- - If the web-site is being used on different countries, geo-based caching and server management should be considered.
  - Localization is needed if there are users that don't understand English 
  - User behaviours should be tracked and showed in monitoring tools.
  - Error/Success rate should be tracked to control how resilient the app is
  - After having many features, an introductory pop-up guide will be necessary. 
+ - All process can be maintained asynchronously for faster user experience.
 
 ### Stories
 
