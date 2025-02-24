@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { CartService } from './cart.service';
 import { Utils } from '../shared/utils';
 import { Checkout } from '../shared/interface';
+import {environment} from "../../environments/environment.development";
 
 describe('CartService', () => {
     let service: CartService;
@@ -33,7 +34,7 @@ describe('CartService', () => {
             expect(response).toBe(mockResponse);
         });
 
-        const req = httpTestingController.expectOne(Utils.BASE_URL + Utils.CHECKOUT);
+        const req = httpTestingController.expectOne(environment.baseUrl + Utils.CHECKOUT);
         expect(req.request.method).toBe('POST');
         req.flush(mockResponse);
     });

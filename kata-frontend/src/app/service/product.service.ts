@@ -3,16 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Utils} from "../shared/utils";
 import {ProductDTO} from "../shared/interface";
+import {environment} from "../../environments/environment.development";
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  getProducts(): Observable<ProductDTO[]> {
-    return this.http.get<ProductDTO[]>(Utils.BASE_URL + Utils.PRODUCTS);
-  }
+    getProducts(): Observable<ProductDTO[]> {
+        return this.http.get<ProductDTO[]>(environment.baseUrl + Utils.PRODUCTS);
+    }
 }

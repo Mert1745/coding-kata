@@ -3,6 +3,7 @@ import { ProductService } from './product.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProductDTO } from '../shared/interface';
 import { Utils } from '../shared/utils';
+import {environment} from "../../environments/environment.development";
 
 describe('ProductService', () => {
     let service: ProductService;
@@ -36,7 +37,7 @@ describe('ProductService', () => {
             expect(products).toEqual(mockProducts);
         });
 
-        const req = httpMock.expectOne(Utils.BASE_URL + Utils.PRODUCTS);
+        const req = httpMock.expectOne(environment.baseUrl + Utils.PRODUCTS);
         expect(req.request.method).toBe('GET');
         req.flush(mockProducts);
     });
@@ -49,7 +50,7 @@ describe('ProductService', () => {
             }
         );
 
-        const req = httpMock.expectOne(Utils.BASE_URL + Utils.PRODUCTS);
+        const req = httpMock.expectOne(environment.baseUrl + Utils.PRODUCTS);
         expect(req.request.method).toBe('GET');
         req.flush('Something went wrong', { status: 500, statusText: 'Server Error' });
     });
