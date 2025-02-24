@@ -11,6 +11,12 @@
   flex-direction: column;
   height: 100%;
   padding: 20px;
+  transition: transform .2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .product-wrapper {
