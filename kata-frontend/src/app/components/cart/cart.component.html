@@ -8,13 +8,13 @@
                 <p>{{ cart.quantity }}</p>
                 <p class="add-subtract" (click)="updateQuantity(cart, 1)">&nbsp;+</p>
             </div>
-            <p class="price">{{ getProductSum(cart.product.id) }} €</p>
+            <p class="price">{{ getProductSum(cart.product.id) | currency: 'EUR' }} </p>
         </li>
     }
     <div class="proceed-wrapper">
         <li class="added-product" *ngIf="checkoutResult === CheckoutState.SUCCESS">Checkout completed!</li>
         <li class="added-product" *ngIf="checkoutResult === CheckoutState.FAILED">Checkout failed!</li>
-        <li class="added-product" *ngIf="checkoutResult === CheckoutState.NONE">Total: {{ getTotalSum() }} €</li>
+        <li class="added-product" *ngIf="checkoutResult === CheckoutState.NONE">Total: {{ getTotalSum() | currency: 'EUR'}} </li>
         <button type="button" class="btn btn-warning mt-2 justify-content-center" [disabled]="this.productSum.length === 0"
                 (click)="proceedCheckout(carts)">Proceed Checkout
         </button>

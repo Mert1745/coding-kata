@@ -5,7 +5,7 @@
                 <img [src]="'/assets/images/' + product.id + '.png'" alt="food"/>
                 <p class="fw-bold">{{ product.name }}</p>
                 @for (price of product.prices; track price.id) {
-                    <p>{{ price.quantity }} for {{ price.amount }} €</p>
+                    <p>{{ price.quantity }} for {{ price.amount | currency: 'EUR'}} </p>
                 }
             </div>
             <button type="button" class="btn btn-success mt-2" (click)="addNewItem(product)">Add</button>

@@ -48,8 +48,8 @@ describe('ProductComponent', () => {
     it('should display correct pricing details', () => {
         const priceElements = fixture.debugElement.queryAll(By.css('.product-wrapper p'));
         expect(priceElements.length).toBe(5);
-        expect(priceElements[1].nativeElement.textContent).toContain('1 for 10 €');
-        expect(priceElements[2].nativeElement.textContent).toContain('3 for 25 €');
+        expect(priceElements[1].nativeElement.textContent).toContain('1 for €10.00');
+        expect(priceElements[2].nativeElement.textContent).toContain('3 for €25.00');
     });
 
     it('should emit count event when Add button is clicked', () => {
