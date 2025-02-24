@@ -40,7 +40,7 @@ class CartControllerIT {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(checkoutJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("true"));  // Expecting `true` for a valid checkout
+                .andExpect(content().string("true"));
     }
 
     @Test
@@ -63,7 +63,7 @@ class CartControllerIT {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(checkoutJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("false"));  // Expecting `false` since price doesn't match
+                .andExpect(content().string("false"));
     }
 
     @Test

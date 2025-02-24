@@ -52,7 +52,7 @@ class CartServiceTest {
     @Test
     void checkout_ShouldReturnTrue_WhenTransactionIsValid() {
         when(productRepository.findById(anyInt())).thenReturn(Optional.of(product));
-        mockCalculation(new BigDecimal("50.00")); // Mock price calculation to match checkout price
+        mockCalculation(new BigDecimal("50.00"));
 
         Boolean result = cartService.checkout(checkout);
 
@@ -64,7 +64,7 @@ class CartServiceTest {
     @Test
     void checkout_ShouldReturnFalse_WhenTransactionIsInvalid() {
         when(productRepository.findById(anyInt())).thenReturn(Optional.of(product));
-        mockCalculation(new BigDecimal("40.00")); // Mock a mismatched price
+        mockCalculation(new BigDecimal("40.00"));
 
         Boolean result = cartService.checkout(checkout);
 

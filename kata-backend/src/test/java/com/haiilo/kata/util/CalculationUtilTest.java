@@ -15,8 +15,8 @@ class CalculationUtilTest {
     @Test
     void calculateSum_ShouldReturnCorrectTotal_WhenMultipleProducts() {
         List<Sum> databaseCarts = List.of(
-                new Sum(5, new ArrayList<>(List.of(new PriceDTO(1L, new BigDecimal("10.00"), 1)))),  // 5 * 10 = 50
-                new Sum(3, new ArrayList<>(List.of(new PriceDTO(2L, new BigDecimal("20.00"), 1))))   // 3 * 20 = 60
+                new Sum(5, new ArrayList<>(List.of(new PriceDTO(1L, new BigDecimal("10.00"), 1)))),
+                new Sum(3, new ArrayList<>(List.of(new PriceDTO(2L, new BigDecimal("20.00"), 1))))
         );
 
         BigDecimal result = CalculationUtil.calculateSum(databaseCarts);

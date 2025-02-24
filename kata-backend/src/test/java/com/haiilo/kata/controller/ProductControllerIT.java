@@ -29,8 +29,8 @@ class ProductControllerIT {
     void getProducts_ShouldReturnProductList() throws Exception {
         mockMvc.perform(get("/products")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())  // HTTP 200 OK
-                .andExpect(jsonPath("$.length()").value(3))  // Expecting 3 products
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(3))
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].name").value("Apple"))
                 .andExpect(jsonPath("$[0].prices.length()").value(2))  // Apple has 2 price entries
@@ -48,14 +48,14 @@ class ProductControllerIT {
     @Test
     @DirtiesContext
     void getProducts_ShouldReturn404_WhenNoProductsExist() throws Exception {
-        // Delete all products from the database
+        // Delete all products from the database as database has inserts default values
         entityManager.createQuery("DELETE FROM Price").executeUpdate();
         entityManager.createQuery("DELETE FROM Product").executeUpdate();
-        entityManager.flush();  // Ensure changes are applied before test
+        entityManager.flush();
 
         mockMvc.perform(get("/products")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())  // Expecting 404
-                .andExpect(content().string("No products found!"));  // Expected error message
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("No products found!"));
     }
 }
