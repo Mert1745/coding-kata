@@ -30,7 +30,6 @@
 
 ### Possible Improvements
 
- - A Loading spinner should be added while the user waits for response from the server
  - Endpoint can have /api/v1 prefixes for future uses
  - Static images should be taken from a CDN service rather than being kept it in frontend.
  - Frontend and backend codebase should be in separate repositories.
@@ -46,6 +45,7 @@
  - Database sharding might be necessary if total size is big enough
  - Caching service should be applied for fast response. The most viewed products should be cached
  - If the web-site is being used on different countries, geo-based caching and server management should be considered.
+ - Microservice architecture can be considered if the scope is going to be big enough
  - An admin portal should exist for product management (adding/subtracting new products, changing price/offers)
  - User login
  - Pagination should be implemented

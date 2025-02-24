@@ -31,7 +31,6 @@ export class CartComponent implements DoCheck {
                 amount: this.calculateProductPrice(cart)
             }));
 
-        // Reset checkoutResult if there are items in the cart
         if (this.carts.some(cart => cart.quantity > 0)) {
             this.checkoutResult = CheckoutState.NONE;
         }
